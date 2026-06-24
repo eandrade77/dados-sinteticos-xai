@@ -1,6 +1,14 @@
-# Repositório de Código: Dados Sintéticos em Visão Computacional
+# Dados Sintéticos e IA Explicável (XAI) em Visão Computacional
 
-Este é o repositório oficial de códigos do livro **"Dados Sintéticos em Visão Computacional: Do Treinamento à Explicabilidade com PyTorch e Unity"**, escrito por **Edilton Torres de Andrade**.
+<p align="center">
+  <a href="https://amazon.com/dp/ASIN_AQUI" target="_blank">
+    <img src="https://via.placeholder.com/250x375.png?text=Capa+do+Livro+Aqui" alt="Capa do Livro" width="250">
+  </a>
+</p>
+
+Este é o repositório oficial de código aberto e datasets auxiliares do livro **["Dados Sintéticos e IA Explicável (XAI) em Visão Computacional: Superando o Reality Gap com implementações práticas em PyTorch e Unity"](https://amazon.com/dp/ASIN_AQUI)**, escrito por **Edilton Torres de Andrade**.
+
+> 📚 **Adquira o Livro:** Todo o código, a metodologia de validação de imagens sintéticas (Reality Gap), e a lógica detalhada por trás da nossa auditoria XAI pixel a pixel (LIME/Grad-CAM) contida neste repositório estão fundamentadas passo a passo na obra publicada. [Clique aqui para conhecer e adquirir o livro na Amazon.](https://amazon.com/dp/ASIN_AQUI)
 
 Aqui você encontrará todas as simulações matemáticas em Python, os scripts de treinamento de redes neurais convolucionais (CNNs) no PyTorch, os hooks de explicabilidade (XAI) e as rotinas em C# para captura e rotação na Unity 3D.
 
