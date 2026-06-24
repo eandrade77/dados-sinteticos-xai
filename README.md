@@ -15,6 +15,7 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 │   ├── Engine.ipynb             # Seleção de classes, prep do dataset e baseline
 │   ├── Engine_t1_real.ipynb     # Treinamento e avaliação no dataset real
 │   ├── Engine_t1_sintetico.ipynb # Treinamento e avaliação no dataset sintético
+│   ├── grad-cam.py              # Script Keras original de geração de mapas de ativação por Grad-CAM
 │   ├── lime_ago20-Expr1.ipynb   # Explicabilidade LIME e cálculo de TP/FP/FN de superpixels
 │   └── teste_mask.ipynb         # Testes de máscaras de interseção/sobreposição LIME vs Ground Truth
 ├── dados_auditoria_original/    # Planilhas originais de auditoria LIME vs Ground Truth (formato Excel)
@@ -38,9 +39,10 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 
 A pasta `notebooks_keras_original/` e a pasta `dados_auditoria_original/` preservam os experimentos originais e planilhas de validação desenvolvidas durante a dissertação de mestrado (UFABC, 2022). Esses artefatos históricos serviram como prova de conceito para as metodologias explicadas no livro e foram integralmente portados para scripts modulares em **PyTorch** contidos na pasta `src/`.
 
-### Notebooks Originais:
+### Notebooks e Códigos de Origem:
 * **Engine.ipynb**: Pipeline de ingestão, particionamento do dataset de cães do Stanford Dogs e treinamento de modelos de base.
 * **Engine_t1_real.ipynb / Engine_t1_sintetico.ipynb**: Experimentos comparativos de fine-tuning utilizando imagens reais do mundo físico vs. imagens sintéticas renderizadas 3D com ruído.
+* **grad-cam.py**: Script Keras original implementando a extração dos gradientes da última camada convolucional (VGG16/Xception), gerando o mapa de calor da ativação e combinando-o com Guided Backpropagation.
 * **lime_ago20-Expr1.ipynb**: Notebook onde foi validada a formulação matemática de interseção de superpixels do LIME contra o Ground Truth (definição de Verdadeiros Positivos na equação $VP = \sum_i \sum_j A_{i,j} \times B_{i,j}$).
 * **teste_mask.ipynb**: Protótipo de validação local para extração de superpixels relevantes e geração das máscaras binárias.
 
