@@ -50,12 +50,6 @@ A pasta `notebooks_keras_original/` e a pasta `dados_auditoria_original/` preser
 * **`output_base1_t1_real_sample.xlsx`**: Dados tabulados com probabilidades preditas, classe atribuída pela rede, classe explicada pelo LIME, e contagem de superpixels correspondentes à sobreposição XAI vs. Ground Truth.
 * **`resumo_ranking.xlsx`**: Sumário executivo das métricas consolidadas (Hits de 1 a 6) por classe e conjunto de testes.
 
-### Origem das Imagens e Máscaras de Ground Truth (GT):
-No ambiente do desenvolvedor, a base de imagens original e as máscaras manuais de Ground Truth foram migradas para o drive `D:` no seguinte caminho:
-`D:\audiodeep\image_downloader\image_downloader\images\`
-* **Imagens Originais**: Localizadas nas pastas das respectivas classes (ex: `german-shepherd 2020_09_11_total/` ou `3dogs/teste/`).
-* **Máscaras de Ground Truth**: Localizadas sob as subpastas `mask/` de cada diretório (ex: `german-shepherd 2020_09_11_total/mask/` e `3dogs/mask/`). Estas máscaras contêm imagens binárias de segmentação (silhueta em preto e branco) que servem como gabarito para aferir os Verdadeiros Positivos (TP) do LIME.
-
 ---
 
 ## Instalação e Requisitos
