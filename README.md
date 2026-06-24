@@ -11,7 +11,13 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 ```text
 ├── LICENSE                      # Licença do repositório (MIT)
 ├── README.md                    # Documentação principal
-└── src/                         # Códigos-fonte
+├── notebooks_keras_original/    # Notebooks originais de pesquisa em Keras/TensorFlow (Tese de Mestrado, 2022)
+│   ├── Engine.ipynb             # Seleção de classes, prep do dataset e baseline
+│   ├── Engine_t1_real.ipynb     # Treinamento e avaliação no dataset real
+│   ├── Engine_t1_sintetico.ipynb # Treinamento e avaliação no dataset sintético
+│   ├── lime_ago20-Expr1.ipynb   # Explicabilidade LIME e cálculo de TP/FP/FN de superpixels
+│   └── teste_mask.ipynb         # Testes de máscaras de interseção/sobreposição LIME vs Ground Truth
+└── src/                         # Códigos-fonte portados para PyTorch e C#
     ├── equations_solver.py      # Solucionador das equações teóricas (Convolução 1D, Neurônio, Softmax, etc.)
     ├── train.py                 # Loop de treinamento e ajuste fino (Fine-Tuning) do InceptionV3 no PyTorch
     ├── gradcam_eval.py          # Implementação e hooks do Grad-CAM para geração de mapas de ativação
@@ -20,6 +26,17 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
         ├── CameraRotator.cs     # Coroutine para rotação incremental uniforme em 360 graus
         └── ScreenshotHandler.cs # Captura de renders em RenderTexture de alta definição
 ```
+
+---
+
+## Notebooks Keras Originais (Pesquisa de Origem)
+
+A pasta `notebooks_keras_original/` preserva os experimentos originais em **Keras/TensorFlow** desenvolvidos durante a dissertação de mestrado (UFABC, 2022). Esses notebooks serviram como prova de conceito histórica para as metodologias explicadas no livro e foram integralmente portados para scripts modulares em **PyTorch** contidos na pasta `src/`.
+
+* **Engine.ipynb**: Pipeline de ingestão, particionamento do dataset de cães do Stanford Dogs e treinamento de modelos de base.
+* **Engine_t1_real.ipynb / Engine_t1_sintetico.ipynb**: Experimentos comparativos de fine-tuning utilizando imagens reais do mundo físico vs. imagens sintéticas renderizadas 3D com ruído.
+* **lime_ago20-Expr1.ipynb**: Notebook onde foi validada a formulação matemática de interseção de superpixels do LIME contra o Ground Truth (definição de Verdadeiros Positivos na equação $VP = \sum_i \sum_j A_{i,j} \times B_{i,j}$).
+* **teste_mask.ipynb**: Protótipo de validação local para extração de superpixels relevantes e geração das máscaras binárias.
 
 ---
 
