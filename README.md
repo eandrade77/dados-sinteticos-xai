@@ -11,6 +11,7 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 ```text
 ├── LICENSE                      # Licença do repositório (MIT)
 ├── README.md                    # Documentação principal
+├── classes.txt                  # Lista de classes alvo do dataset (dalmatian, german_shepherd, doberman)
 ├── notebooks_keras_original/    # Notebooks originais de pesquisa em Keras/TensorFlow (Tese de Mestrado, 2022)
 │   ├── Engine.ipynb             # Seleção de classes, prep do dataset e baseline
 │   ├── Engine_t1_real.ipynb     # Treinamento e avaliação no dataset real
@@ -25,6 +26,7 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 │   └── resumo_ranking.xlsx      # Estatísticas consolidadas de Hit e acurácia por classe
 └── src/                         # Códigos-fonte portados para PyTorch e C#
     ├── equations_solver.py      # Solucionador das equações teóricas (Convolução 1D, Neurônio, Softmax, etc.)
+    ├── dataset_organizer.py     # Script para organizar e dividir imagens/máscaras brutas em treino/val
     ├── train.py                 # Loop de treinamento e ajuste fino (Fine-Tuning) do InceptionV3 no PyTorch
     ├── gradcam_eval.py          # Implementação e hooks do Grad-CAM para geração de mapas de ativação
     ├── lime_eval.py             # Script de auditoria explicável LIME contra Ground Truth (sensibilidade/precisão)
@@ -78,20 +80,27 @@ Para verificar o comportamento matemático de convoluções 1D, neurônios artif
 python src/equations_solver.py
 ```
 
-### 2. Treinamento no PyTorch
-Para iniciar o treinamento e ajuste fino em duas fases da CNN InceptionV3:
+### 2. Organização do Dataset
+Antes de treinar, você deve estruturar a base de dados (imagens reais e sintéticas) em diretórios organizados para treino e validação. O script abaixo divide automaticamente as imagens brutas e suas respectivas máscaras GT (subpastas `mask/` de cada classe) com base no arquivo `classes.txt`:
 ```bash
-python src/train.py --dataset_root path/to/dataset --classes path/to/classes.txt
+python src/dataset_organizer.py --source_dir path/to/raw_images --dest_dir dataset --classes classes.txt --split 0.8
 ```
 
-### 3. Explicabilidade (XAI)
-Para rodar a auditoria quantitativa das explicações locais contra as máscaras de Ground Truth:
+### 3. Treinamento no PyTorch
+Para iniciar o treinamento e ajuste fino (fine-tuning) em duas fases da CNN InceptionV3:
 ```bash
-# Grad-CAM
+python src/train.py --dataset_root dataset/images/train --classes classes.txt
+```
+
+### 4. Explicabilidade (XAI)
+Para rodar a auditoria quantitativa das explicações locais contra as máscaras de Ground Truth:
+
+```bash
+# Grad-CAM (PyTorch)
 python src/gradcam_eval.py --image_path img.jpg --model_path model.pth
 
-# LIME
-python src/lime_eval.py --image_dir path/to/images --model_path model.pth --classes path/to/classes.txt
+# Auditoria LIME vs Ground Truth (TP/FP/FN/Precisão)
+python src/lime_eval.py --image_dir dataset/images/val --model_path model.pth --classes classes.txt
 ```
 
 ---
@@ -136,8 +145,9 @@ Para garantir conformidade legal com o ecossistema de software livre e integrida
 
 ### Referências Científicas Citadas
 
-Caso utilize estes algoritmos e metodologias em pesquisas acadêmicas, recomendamos citar as publicações originais de referência:
+Caso utilize estes algoritmos, bases de dados e metodologias em pesquisas acadêmicas, recomendamos citar as publicações originais de referência:
 
+* **Stanford Dogs Dataset**: Aditya Khosla, Nityananda Jayadevaprakash, Yao-Yu Wang and Li Fei-Fei. *"Novel Dataset for Fine-Grained Image Categorization."* First Workshop on Fine-Grained Visual Categorization, IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2011. [Link do Dataset](http://vision.stanford.edu/aditya86/ImageNetDogs/)
 * **Grad-CAM**: Selvaraju, Ramprasaath R., et al. *"Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization."* Proceedings of the IEEE International Conference on Computer Vision (ICCV), 2017.
 * **LIME**: Ribeiro, Marco Tulio, Sameer Singh, and Carlos Guestrin. *""Why Should I Trust You?": Explaining the Predictions of Any Classifier."* Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD), 2016.
 * **Inception-v3**: Szegedy, Christian, et al. *"Rethinking the Inception Architecture for Computer Vision."* Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016.
