@@ -27,6 +27,7 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 └── src/                         # Códigos-fonte portados para PyTorch e C#
     ├── equations_solver.py      # Solucionador das equações teóricas (Convolução 1D, Neurônio, Softmax, etc.)
     ├── dataset_organizer.py     # Script para organizar e dividir imagens/máscaras brutas em treino/val
+    ├── search.py                # Script original de download e busca automatizada de imagens no Bing/Google
     ├── train.py                 # Loop de treinamento e ajuste fino (Fine-Tuning) do InceptionV3 no PyTorch
     ├── gradcam_eval.py          # Implementação e hooks do Grad-CAM para geração de mapas de ativação
     ├── lime_eval.py             # Script de auditoria explicável LIME contra Ground Truth (sensibilidade/precisão)
@@ -42,6 +43,7 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 A pasta `notebooks_keras_original/` e a pasta `dados_auditoria_original/` preservam os experimentos originais e planilhas de validação desenvolvidas durante a dissertação de mestrado (UFABC, 2022). Esses artefatos históricos serviram como prova de conceito para as metodologias explicadas no livro e foram integralmente portados para scripts modulares em **PyTorch** contidos na pasta `src/`.
 
 ### Notebooks e Códigos de Origem:
+* **search.py**: Script original de web scraping (utilizando Selenium e BeautifulSoup) usado para buscar e descarregar automaticamente imagens de teste adicionais da internet (Google/Bing) para robustecer o conjunto de validação real.
 * **Engine.ipynb**: Pipeline de ingestão, particionamento do dataset de cães do Stanford Dogs e treinamento de modelos de base.
 * **Engine_t1_real.ipynb / Engine_t1_sintetico.ipynb**: Experimentos comparativos de fine-tuning utilizando imagens reais do mundo físico vs. imagens sintéticas renderizadas 3D com ruído.
 * **grad-cam.py**: Script Keras original implementando a extração dos gradientes da última camada convolucional (VGG16/Xception), gerando o mapa de calor da ativação e combinando-o com Guided Backpropagation.
