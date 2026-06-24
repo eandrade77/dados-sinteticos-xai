@@ -17,6 +17,11 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 │   ├── Engine_t1_sintetico.ipynb # Treinamento e avaliação no dataset sintético
 │   ├── lime_ago20-Expr1.ipynb   # Explicabilidade LIME e cálculo de TP/FP/FN de superpixels
 │   └── teste_mask.ipynb         # Testes de máscaras de interseção/sobreposição LIME vs Ground Truth
+├── dados_auditoria_original/    # Planilhas originais de auditoria LIME vs Ground Truth (formato Excel)
+│   ├── class_priori.xlsx        # Mapeamento de imagens para classes (dalmatian, german_shepherd, etc.)
+│   ├── arrays6_calcs.xlsx       # Matrizes binárias de superpixels e cálculo de TP/FP/FN (precisão e recall)
+│   ├── output_base1_t1_real_sample.xlsx # Logs de predições, probabilidades e métricas de auditoria XAI
+│   └── resumo_ranking.xlsx      # Estatísticas consolidadas de Hit e acurácia por classe
 └── src/                         # Códigos-fonte portados para PyTorch e C#
     ├── equations_solver.py      # Solucionador das equações teóricas (Convolução 1D, Neurônio, Softmax, etc.)
     ├── train.py                 # Loop de treinamento e ajuste fino (Fine-Tuning) do InceptionV3 no PyTorch
@@ -29,14 +34,21 @@ Aqui você encontrará todas as simulações matemáticas em Python, os scripts 
 
 ---
 
-## Notebooks Keras Originais (Pesquisa de Origem)
+## Notebooks Keras Originais e Dados de Auditoria (Pesquisa de Origem)
 
-A pasta `notebooks_keras_original/` preserva os experimentos originais em **Keras/TensorFlow** desenvolvidos durante a dissertação de mestrado (UFABC, 2022). Esses notebooks serviram como prova de conceito histórica para as metodologias explicadas no livro e foram integralmente portados para scripts modulares em **PyTorch** contidos na pasta `src/`.
+A pasta `notebooks_keras_original/` e a pasta `dados_auditoria_original/` preservam os experimentos originais e planilhas de validação desenvolvidas durante a dissertação de mestrado (UFABC, 2022). Esses artefatos históricos serviram como prova de conceito para as metodologias explicadas no livro e foram integralmente portados para scripts modulares em **PyTorch** contidos na pasta `src/`.
 
+### Notebooks Originais:
 * **Engine.ipynb**: Pipeline de ingestão, particionamento do dataset de cães do Stanford Dogs e treinamento de modelos de base.
 * **Engine_t1_real.ipynb / Engine_t1_sintetico.ipynb**: Experimentos comparativos de fine-tuning utilizando imagens reais do mundo físico vs. imagens sintéticas renderizadas 3D com ruído.
 * **lime_ago20-Expr1.ipynb**: Notebook onde foi validada a formulação matemática de interseção de superpixels do LIME contra o Ground Truth (definição de Verdadeiros Positivos na equação $VP = \sum_i \sum_j A_{i,j} \times B_{i,j}$).
 * **teste_mask.ipynb**: Protótipo de validação local para extração de superpixels relevantes e geração das máscaras binárias.
+
+### Dados de Auditoria (`dados_auditoria_original/`):
+* **`class_priori.xlsx`**: Lista de mapeamento de cada imagem com sua classe real correspondente.
+* **`arrays6_calcs.xlsx`**: Matriz 2D correspondente ao grid de superpixels da imagem avaliada (dimensões de entrada $299 \times 299$), demonstrando a marcação de Verdadeiros Positivos (TP), Falsos Positivos (FP) e Falsos Negativos (FN) em cada região para o cálculo de sensibilidade e precisão da explicação visual.
+* **`output_base1_t1_real_sample.xlsx`**: Dados tabulados com probabilidades preditas, classe atribuída pela rede, classe explicada pelo LIME, e contagem de superpixels correspondentes à sobreposição XAI vs. Ground Truth.
+* **`resumo_ranking.xlsx`**: Sumário executivo das métricas consolidadas (Hits de 1 a 6) por classe e conjunto de testes.
 
 ---
 
