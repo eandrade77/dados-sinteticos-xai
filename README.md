@@ -1,8 +1,8 @@
 # Dados Sintéticos e IA Explicável (XAI) em Visão Computacional
 
 <p align="center">
-  <a href="https://www.amazon.com/dp/B0H6XXNHVF" target="_blank">
-    <img src="https://via.placeholder.com/250x375.png?text=Capa+do+Livro+Aqui" alt="Capa do Livro" width="250">
+  <a href="https://www.amazon.com/dp/B0H6XXNHVF" target="_blank" rel="noopener noreferrer">
+    <img src="https://images-na.ssl-images-amazon.com/images/P/B0H6XXNHVF.01._SX400_.jpg" alt="Capa do Livro" width="250">
   </a>
 </p>
 
